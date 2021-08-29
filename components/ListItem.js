@@ -1,33 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {uploadsUrl} from '../utils/variables';
 
 const ListItem = ({singleMedia}) => {
-    console.log(singleMedia);
-    return (
+console.log('singleMedia', singleMedia);
+return (
     <TouchableOpacity style={styles.row}>
-        <View style={styles.imagebox}>
-            <Image
-                style={styles.image}
-                source={{uri: singleMedia.thumbnails.w160}}
-            />
-        </View>
-        <View style={styles.textbox}>
-            <Text style={styles.listTitle}>{singleMedia.title}</Text>
-            <Text>{singleMedia.description}</Text>
+    <View style={styles.imagebox}>
+        <Image
+        style={styles.image}
+        source={{uri: uploadsUrl + singleMedia.thumbnails?.w160}}
+        />
+    </View>
+    <View style={styles.textbox}>
+        <Text style={styles.listTitle}>{singleMedia.title}</Text>
+        <Text>{singleMedia.description}</Text>
         </View>
     </TouchableOpacity>
     );
 };
 
 const styles = StyleSheet.create({
-    row: {
-        flexDirection: 'row',
-        padding: 15,
-        marginBottom: 5,
-        backgroundColor: '#eee',
-        borderRadius: 6,
-        flex: 1,
+row: {
+    flexDirection: 'row',
+    padding: 15,
+    marginBottom: 5,
+    backgroundColor: '#eee',
+    borderRadius: 6,
+    flex: 1,
 },
 imagebox: {
     flex: 1,
