@@ -6,26 +6,26 @@ module.exports = {
     'es2020': true,
 },
     'extends': [
-        'google',
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
-    ],
+    'google',
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+],
     'globals': {
     'Atomics': 'readonly',
     'SharedArrayBuffer': 'readonly',
-    },
+},
     'parserOptions': {
-        'ecmaFeatures': {
-        'jsx': true,
+    'ecmaFeatures': {
+    'jsx': true,
     },
     'ecmaVersion': 2018,
     'sourceType': 'module',
-    },
+},
     'plugins': [
-        'react',
-        'react-native',
-        'prettier'
+    'react',
+    'react-native',
+    'prettier'
     ],
     'rules': {
     'react/jsx-uses-react': 'error',
@@ -33,7 +33,7 @@ module.exports = {
     'no-console': 0,
     'require-jsdoc': 0,
     'prettier/prettier': 'error',
-    },
+},
     'settings': {
     'react': {
        'createClass': 'createReactClass', // Regex for Component Factory to use,
@@ -47,7 +47,7 @@ module.exports = {
     },
     'propWrapperFunctions': [
        // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
-        'forbidExtraProps',
+    'forbidExtraProps',
         {'property': 'freeze', 'object': 'Object'},
         {'property': 'myFavoriteWrapper'},
     ],
@@ -58,4 +58,3 @@ module.exports = {
     ],
     },
 };
-

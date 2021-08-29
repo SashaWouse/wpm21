@@ -7,14 +7,14 @@ const ListItem = ({singleMedia}) => {
     return (
     <TouchableOpacity style={styles.row}>
         <View style={styles.imagebox}>
-        <Image
-            style={styles.image}
-            source={{uri: singleMedia.thumbnails.w160}}
-        />
+            <Image
+                style={styles.image}
+                source={{uri: singleMedia.thumbnails.w160}}
+            />
         </View>
         <View style={styles.textbox}>
-        <Text style={styles.listTitle}>{singleMedia.title}</Text>
-        <Text>{singleMedia.description}</Text>
+            <Text style={styles.listTitle}>{singleMedia.title}</Text>
+            <Text>{singleMedia.description}</Text>
         </View>
     </TouchableOpacity>
     );
@@ -22,25 +22,25 @@ const ListItem = ({singleMedia}) => {
 
 const styles = StyleSheet.create({
     row: {
-    flexDirection: 'row',
-    padding: 15,
-    marginBottom: 5,
-    backgroundColor: '#eee',
+        flexDirection: 'row',
+        padding: 15,
+        marginBottom: 5,
+        backgroundColor: '#eee',
+        borderRadius: 6,
+        flex: 1,
+},
+imagebox: {
+    flex: 1,
+},
+image: {
+    flex: 1,
     borderRadius: 6,
-    flex: 1,
-    },
-    imagebox: {
-    flex: 1,
-    },
-    image: {
-    flex: 1,
-    borderRadius: 6,
-    },
-    textbox: {
+},
+textbox: {
     flex: 2,
     padding: 10,
-    },
-    listTitle: {
+},
+listTitle: {
     fontWeight: 'bold',
     fontSize: 20,
     paddingBottom: 15,
@@ -52,4 +52,3 @@ ListItem.propTypes = {
 };
 
 export default ListItem;
-
