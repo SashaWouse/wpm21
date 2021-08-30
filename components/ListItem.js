@@ -5,17 +5,17 @@ import {uploadsUrl} from '../utils/variables';
 
 const ListItem = ({singleMedia}) => {
 console.log('singleMedia', singleMedia);
-return (
+    return (
     <TouchableOpacity style={styles.row}>
-    <View style={styles.imagebox}>
-        <Image
-        style={styles.image}
-        source={{uri: uploadsUrl + singleMedia.thumbnails?.w160}}
-        />
-    </View>
-    <View style={styles.textbox}>
-        <Text style={styles.listTitle}>{singleMedia.title}</Text>
-        <Text>{singleMedia.description}</Text>
+        <View style={styles.imagebox}>
+            <Image
+                style={styles.image}
+                source={{uri: uploadsUrl + singleMedia.thumbnails?.w160}}
+            />
+        </View>
+        <View style={styles.textbox}>
+            <Text style={styles.listTitle}>{singleMedia.title}</Text>
+            <Text>{singleMedia.description}</Text>
         </View>
     </TouchableOpacity>
     );

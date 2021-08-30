@@ -16,8 +16,8 @@ const loadMedia = async () => {
     try {
         const mediaIlmanThumbnailia = await doFetch(baseUrl + 'media');
         const kaikkiTiedot = mediaIlmanThumbnailia.map(async (media) => {
-            return await loadSingleMedia(media.file_id);
-        });
+        return await loadSingleMedia(media.file_id);
+    });
         return Promise.all(kaikkiTiedot);
     } catch (e) {
         console.log('loadMedia', e.message);
@@ -26,7 +26,7 @@ const loadMedia = async () => {
 
 const loadSingleMedia = async (id) => {
     try {
-        const tiedosto = await doFetch(baseUrl + 'media/' + id + '1');
+        const tiedosto = await doFetch(baseUrl + 'media/' + id );
         return tiedosto;
     } catch (e) {
         console.log('loadSingleMedia', e.message);
