@@ -3,34 +3,37 @@ import {StyleSheet, View, Text, Button} from 'react-native';
 import PropTypes from 'prop-types';
 import {MainContext} from '../contexts/MainContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useUser} from '../hooks/ApiHooks';
+import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 
-    const Login = (props) => {
-    const [isLoggedIn, setIsLoggedIn] = useContext(MainContext);
-    console.log('ili', isLoggedIn);
+    const Login = ({navigation}) => {
+        const {setIsLoggedIn} = useContext(MainContext);
+        const {checkToken} = useUser();
 
-    const logIn = async () => {
-        setIsLoggedIn(true);
-        await AsyncStorage.setItem('userToken', 'abc');
-        props.navigation.navigate('Home');
-    };
     const getToken = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
-        console.log('token', userToken);
-        if (userToken === 'abc') {
-        setIsLoggedIn(true);
-        props.navigation.navigate('Home');
+        console.log('logIn asyncstorage token', userToken);
+
+    if (userToken) {
+        const userInfo = await checkToken(userToken);
+        if (userInfo.user_id) {
+            setIsLoggedIn(true);
+        }
         }
     };
+
     useEffect(() => {
         getToken();
     }, []);
     return (
-        <View style={styles.container}>
-        <Text>Login</Text>
-        <Button title="Sign in!" onPress={logIn} />
-        </View>
+        <KeyboardAvoidingView style={styles.container}>
+            <Text>Login</Text>
+            <LoginForm navigation={navigation}/>
+            <RegisterForm navigation={navigation} />
+        </KeyboardAvoidingView>
     );
-    };
+};
 
     const styles = StyleSheet.create({
     container: {
@@ -39,10 +42,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
         alignItems: 'center',
         justifyContent: 'center',
     },
-    });
+});
 
     Login.propTypes = {
-    navigation: PropTypes.object,
+        navigation: PropTypes.object,
     };
 
 export default Login;

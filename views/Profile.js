@@ -5,8 +5,9 @@ import {MainContext} from '../contexts/MainContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
     const Profile = (props) => {
-    const {isLoggedIn, setIsLoggedIn} = useContext(MainContext);
+    const {isLoggedIn, setIsLoggedIn, user} = useContext(MainContext);
     console.log('Profile isLoggedIn', isLoggedIn);
+    console.log('user on profile page', user);
     const logout = async () => {
         setIsLoggedIn(false);
         AsyncStorage.clear();
@@ -18,6 +19,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     return (
         <SafeAreaView style={styles.container}>
         <Text>Profile</Text>
+        <Text>Username: {user.username}</Text>
+        <Text>Full name: {user.full_name}</Text>
+        <Text>Email: {user.email}</Text>
         <Button title={'Logout'} onPress={logout} />
         </SafeAreaView>
     );
