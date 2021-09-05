@@ -3,38 +3,37 @@ import {doFetch} from '../utils/http';
 import {baseUrl} from '../utils/variables';
 
 const useMedia = () => {
-    const [mediaArray, setMediaArray] = useState([]);
+  const [mediaArray, setMediaArray] = useState([]);
 
-    useEffect(() => {
-    // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
+  useEffect(() => {
     (async () => {
-        setMediaArray(await loadMedia());
+      setMediaArray(await loadMedia());
     })();
-}, []);
+  }, []);
 
-const loadMedia = async () => {
+  const loadMedia = async () => {
     try {
-        const mediaIlmanThumbnailia = await doFetch(baseUrl + 'media');
-        const kaikkiTiedot = mediaIlmanThumbnailia.map(async (media) => {
+      const mediaWithoutThumbnail = await doFetch(baseUrl + 'media');
+      const allFiles = mediaWithoutThumbnail.map(async (media) => {
         return await loadSingleMedia(media.file_id);
-    });
-        return Promise.all(kaikkiTiedot);
+      });
+      return Promise.all(allFiles);
     } catch (e) {
-        console.log('loadMedia', e.message);
+      console.log('loadMedia', e.message);
     }
-};
+  };
 
-const loadSingleMedia = async (id) => {
+  const loadSingleMedia = async (id) => {
     try {
-        const tiedosto = await doFetch(baseUrl + 'media/' + id );
-        return tiedosto;
+      const file = await doFetch(baseUrl + 'media/' + id);
+      return file;
     } catch (e) {
-        console.log('loadSingleMedia', e.message);
-        return {};
+      console.log('loadSingleMedia', e.message);
+      return {};
     }
-};
+  };
 
-    return {mediaArray, loadMedia, loadSingleMedia};
+  return {mediaArray, loadSingleMedia, loadMedia};
 };
 
 export {useMedia};
