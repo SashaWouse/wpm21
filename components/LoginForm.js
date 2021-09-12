@@ -42,7 +42,7 @@ const LoginForm = ({navigation}) => {
           />
       <Button raised title="Login!" onPress={doLogin}/>
     </View>
-    );
+  );
 };
 
 LoginForm.propTypes = {

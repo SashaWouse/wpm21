@@ -7,12 +7,12 @@ import {useUser} from '../hooks/ApiHooks';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import {ImageBackground} from 'react-native';
-import {Card, ListItem, Text} from 'react-native-elements';
+import {Card} from 'react-native-elements';
 
     const Login = ({navigation}) => {
         const {setIsLoggedIn, setUser} = useContext(MainContext);
         const {checkToken} = useUser();
-        const[registerFormToggle, setRegisterFormToggle] = useState(false);
+        //const[registerFormToggle, setRegisterFormToggle] = useState(false);
 
     const getToken = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
@@ -20,10 +20,10 @@ import {Card, ListItem, Text} from 'react-native-elements';
 
     if (userToken) {
         const userInfo = await checkToken(userToken);
-        if (userInfo.user_id) {
-            setUser(userInfo);
-            setIsLoggedIn(true);
-        }
+            if (userInfo.user_id) {
+                setUser(userInfo);
+                setIsLoggedIn(true);
+            }
         }
     };
 

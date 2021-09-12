@@ -1,4 +1,4 @@
-import React, {useContex, tuseEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {ActivityIndicator, Text, StyleSheet} from 'react-native';
 import {MainContext} from '../contexts/MainContext';
@@ -58,13 +58,7 @@ import {Avatar} from 'react-native-elements/dist/avatar/Avatar';
 };
 
     const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 40,
-    },
+        image: {width: '100%', height: undefined, aspectRatio: 1},
     });
 
     Profile.propTypes = {
