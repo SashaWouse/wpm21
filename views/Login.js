@@ -1,15 +1,18 @@
 import React, {useContext, useEffect} from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
+import {StyleSheet, KeyboardAvoidingView, Platform} from 'react-native';
 import PropTypes from 'prop-types';
 import {MainContext} from '../contexts/MainContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useUser} from '../hooks/ApiHooks';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
+import {ImageBackground} from 'react-native';
+import {Card, ListItem, Text} from 'react-native-elements';
 
     const Login = ({navigation}) => {
-        const {setIsLoggedIn} = useContext(MainContext);
+        const {setIsLoggedIn, setUser} = useContext(MainContext);
         const {checkToken} = useUser();
+        const[registerFormToggle, setRegisterFormToggle] = useState(false);
 
     const getToken = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
@@ -18,6 +21,7 @@ import RegisterForm from '../components/RegisterForm';
     if (userToken) {
         const userInfo = await checkToken(userToken);
         if (userInfo.user_id) {
+            setUser(userInfo);
             setIsLoggedIn(true);
         }
         }
@@ -26,11 +30,24 @@ import RegisterForm from '../components/RegisterForm';
     useEffect(() => {
         getToken();
     }, []);
+
     return (
-        <KeyboardAvoidingView style={styles.container}>
-            <Text>Login</Text>
-            <LoginForm navigation={navigation}/>
-            <RegisterForm navigation={navigation} />
+        <KeyboardAvoidingView 
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'} 
+            style={styles.container}
+        >
+            <ImageBackground
+                source={require('../assets/splash.png')}
+                style={styles.image}
+            >
+            <Card>
+                <Card.Title h4>Login</Card.Title>
+                <LoginForm navigation={navigation} />
+                    <Card.Divider />
+                <Card.Title h4>Register</Card.Title>
+                    <RegisterForm navigation={navigation} />
+                </Card>
+            </ImageBackground>
         </KeyboardAvoidingView>
     );
 };
@@ -41,6 +58,11 @@ import RegisterForm from '../components/RegisterForm';
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    image: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
     },
 });
 

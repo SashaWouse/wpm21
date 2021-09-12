@@ -7,6 +7,8 @@ const useSignUpForm = (callback) => {
     email: '',
     full_name: '',
   });
+  // TODO: create state for errors
+  // Display 
 
   const handleInputChange = (name, text) => {
     // console.log(name, text);

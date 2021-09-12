@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
         const [user, setUser] = useState({});
 
     return (
-        <MainContext.Provider value={{isLoggedIn, setIsLoggedIn, user, setUser}}>
+        <MainContext.Provider value={[isLoggedIn, setIsLoggedIn, user, setUser]}>
             {props.children}
         </MainContext.Provider>
     );

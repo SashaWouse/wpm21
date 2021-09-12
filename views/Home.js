@@ -12,10 +12,10 @@ import List from '../components/List';
 const Home = ({navigation}) => {
     return (
         <SafeAreaView style={styles.droidSafeArea}>
-        <View style={styles.container}>
-            <List navigation={navigation} />
-        </View>
-        <StatusBar style="auto" />
+            <View style={styles.container}>
+                <List navigation={navigation} />
+            </View>
+            <StatusBar style="auto" />
         </SafeAreaView>
     );
 };

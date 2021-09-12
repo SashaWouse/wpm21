@@ -6,6 +6,7 @@ const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
 
   useEffect(() => {
+    // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
     (async () => {
       setMediaArray(await loadMedia());
     })();
@@ -13,11 +14,11 @@ const useMedia = () => {
 
   const loadMedia = async () => {
     try {
-      const mediaWithoutThumbnail = await doFetch(baseUrl + 'media');
-      const allFiles = mediaWithoutThumbnail.map(async (media) => {
+      const mediaIlmanThumbnailia = await doFetch(baseUrl + 'media');
+      const kaikkiTiedot = mediaIlmanThumbnailia.map(async (media) => {
         return await loadSingleMedia(media.file_id);
       });
-      return Promise.all(allFiles);
+      return Promise.all(kaikkiTiedot);
     } catch (e) {
       console.log('loadMedia', e.message);
     }
@@ -25,23 +26,24 @@ const useMedia = () => {
 
   const loadSingleMedia = async (id) => {
     try {
-      const file = await doFetch(baseUrl + 'media/' + id);
-      return file;
+      const tiedosto = await doFetch(baseUrl + 'media/' + id);
+      return tiedosto;
     } catch (e) {
       console.log('loadSingleMedia', e.message);
       return {};
     }
   };
 
-  return {mediaArray, loadSingleMedia, loadMedia};
+  return {mediaArray, loadMedia, loadSingleMedia};
 };
 
 const useLogin = () => {
   const login = async (userCredentials) => {
     const requestOptions = {
       method: 'POST',
+      // mode: 'no-cors',
       headers: {'Content-Type': 'application/json'},
-      body: userCredentials,
+      body: JSON.stringify(userCredentials),
     };
     try {
       const loginResponse = await doFetch(baseUrl + 'login', requestOptions);
@@ -67,24 +69,37 @@ const useUser = () => {
     }
   };
 
-  const register = async (inputs) => {
-    const fetchOptions = {
+  const register = async (userCredentials) => {
+    // https://media.mw.metropolia.fi/wbma/docs/#api-User-PostUser
+    const requestOptions = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputs),
+      // mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(userCredentials),
     };
     try {
-      const response = await fetch(baseUrl + 'users', fetchOptions);
-      const json = await response.json();
-      return json;
-    } catch (e) {
-      console.log('ApiHooks register', e.message);
-      return false;
+      const registerResponse = await doFetch(baseUrl + 'users', requestOptions);
+      return registerResponse;
+    } catch (error) {
+      console.log('register error', error.message);
     }
   };
+
   return {checkToken, register};
 };
 
-export {useMedia, useLogin, useUser};
+const useTag = () => {
+  const getFilesByTag = async (tag) => {
+    try {
+      const tiedosto = await doFetch(baseUrl + 'tags/' + tag);
+      return tiedosto;
+    } catch (e) {
+      console.log('getFilesByTag', e.message);
+      return {};
+    }
+  };
+
+  return {getFilesByTag};
+};
+
+export {useMedia, useLogin, useUser, useTag};
