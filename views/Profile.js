@@ -7,6 +7,7 @@ import {Card, ListItem} from 'react-native-elements';
 import {useTag} from '../hooks/ApiHooks';
 import {uploadsUrl} from '../utils/variables';
 import {Avatar} from 'react-native-elements/dist/avatar/Avatar';
+import {ScrollView} from 'react-native-gesture-handler';
 
     const Profile = (props) => {
         const {setIsLoggedIn, user} = useContext(MainContext);
@@ -29,7 +30,8 @@ import {Avatar} from 'react-native-elements/dist/avatar/Avatar';
         setIsLoggedIn(false);
     };
     return (
-        <Card>
+        <ScrollView>
+            <Card>
         <Card.Title>
             <Text h1>{user.username}</Text>
         </Card.Title>
@@ -54,6 +56,7 @@ import {Avatar} from 'react-native-elements/dist/avatar/Avatar';
             <ListItem.Chevron />
         </ListItem>
     </Card>
+        </ScrollView> 
     );
 };
 

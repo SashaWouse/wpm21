@@ -69,6 +69,17 @@ const useUser = () => {
     }
   };
 
+  const checkUsernameAvailable = async (username) => {
+    try {
+      const usernameInfo = await doFetch(
+        baseUrl + 'users/username/' + username
+      );
+      return usernameInfo.available;
+    } catch (error) {
+      console.log('checkUsername error', error);
+    }
+  };
+
   const register = async (userCredentials) => {
     // https://media.mw.metropolia.fi/wbma/docs/#api-User-PostUser
     const requestOptions = {
@@ -85,7 +96,7 @@ const useUser = () => {
     }
   };
 
-  return {checkToken, register};
+  return {checkToken, register, checkUsernameAvailable};
 };
 
 const useTag = () => {
