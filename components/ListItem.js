@@ -6,7 +6,7 @@ import {Avatar, ListItem as RNEListItem} from 'react-native-elements';
 
 
 const ListItem = ({singleMedia, navigation}) => {
-    console.log('singleMedia', singleMedia);
+    //console.log('singleMedia', singleMedia);
     return (
         <RNEListItem
             bottomDivider

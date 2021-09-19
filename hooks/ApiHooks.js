@@ -1,16 +1,19 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
+import {MainContext} from '../contexts/MainContext';
 import {doFetch} from '../utils/http';
 import {baseUrl} from '../utils/variables';
 
 const useMedia = () => {
   const [mediaArray, setMediaArray] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const {update} = useContext(MainContext);
 
   useEffect(() => {
     // https://scriptverse.academy/tutorials/js-self-invoking-functions.html
     (async () => {
       setMediaArray(await loadMedia());
     })();
-  }, []);
+  }, [update]);
 
   const loadMedia = async () => {
     try {
