@@ -27,11 +27,16 @@
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
+    "react-native-validation": "^1.0.3",
     "react-native-web": "~0.13.12",
-    "validate.js": "^0.13.1"
+    "simple-react-validator": "^1.6.1",
+    "validate.js": "^0.13.1",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",

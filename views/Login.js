@@ -19,12 +19,16 @@ import {Card, ListItem, Text} from 'react-native-elements';
         console.log('logIn asyncstorage token', userToken);
 
     if (userToken) {
+        try {
         const userInfo = await checkToken(userToken);
         if (userInfo.user_id) {
             setUser(userInfo);
             setIsLoggedIn(true);
+            }
+        } catch (e) {
+            console.log('getToken', e.message);
         }
-        }
+    }
     };
 
     useEffect(() => {

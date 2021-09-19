@@ -14,6 +14,7 @@ const RegisterForm = ({navigation}) => {
 
   const doRegister = async () => {
     try {
+      delete inputs.confirmPassword;
       const registerInfo = await register(inputs);
       if (registerInfo) {
         Alert.alert(registerInfo.message);
@@ -29,7 +30,7 @@ const RegisterForm = ({navigation}) => {
             autoCapitalize="none"
             placeholder="username"
             onChangeText={(txt) => handleInputChange('username', txt)}
-            onEditing={(event) => {
+            onEndEditing={(event) => {
               console.log('onEndEditing value', event.nativeEvent.text);
               checkUsername(event.nativeEvent.text);
               handleOnEndEditing('username', event.nativeEvent.text);

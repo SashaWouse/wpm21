@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
         console.log('MainContext update', update);
 
     return (
-        <MainContext.Provider value={[isLoggedIn, setIsLoggedIn, user, setUser, update, setUpdate]}>
+        <MainContext.Provider value={{isLoggedIn, setIsLoggedIn, user, setUser, update, setUpdate}}>
             {props.children}
         </MainContext.Provider>
     );
