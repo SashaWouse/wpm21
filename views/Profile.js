@@ -10,7 +10,7 @@ import {Avatar} from 'react-native-elements/dist/avatar/Avatar';
 import {ScrollView} from 'react-native-gesture-handler';
 
     const Profile = (props) => {
-        const {setIsLoggedIn, user} = useContext(MainContext);
+        const {setUser, isLoggedIn, user, setIsLoggedIn} = useContext(MainContext);
         const [avatar, setAvatar] = useState('https://placekitten.com/400/400');
         // console.log('Profile isLoggedIn', isLoggedIn);
         // console.log('user on profile page', user);
@@ -28,6 +28,9 @@ import {ScrollView} from 'react-native-gesture-handler';
         const logout = async () => {
             await AsyncStorage.clear();
             setIsLoggedIn(false);
+            if (!isLoggedIn) {
+                props.navigation.navigate('Login');
+            }
         };
         return (
             <ScrollView>
