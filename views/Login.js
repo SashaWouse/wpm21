@@ -14,21 +14,21 @@ import {Card, ListItem, Text} from 'react-native-elements';
         const {checkToken} = useUser();
         const [registerFormToggle, setRegisterFormToggle] = useState(false);
 
-    const getToken = async () => {
-        const userToken = await AsyncStorage.getItem('userToken');
-        console.log('logIn asyncstorage token', userToken);
+        const getToken = async () => {
+            const userToken = await AsyncStorage.getItem('userToken');
+            console.log('logIn asyncstorage token', userToken);
 
-    if (userToken) {
-        try {
-        const userInfo = await checkToken(userToken);
-        if (userInfo.user_id) {
-            setUser(userInfo);
-            setIsLoggedIn(true);
+            if (userToken) {
+                try {
+                const userInfo = await checkToken(userToken);
+                if (userInfo.user_id) {
+                    setUser(userInfo);
+                    setIsLoggedIn(true);
+                    }
+                } catch (e) {
+                    console.log('getToken', e.message);
+                }
             }
-        } catch (e) {
-            console.log('getToken', e.message);
-        }
-    }
     };
 
     useEffect(() => {
@@ -77,18 +77,16 @@ import {Card, ListItem, Text} from 'react-native-elements';
 };
 
     const styles = StyleSheet.create({
-    container: {
+        container: {
+            flex: 1,
+            backgroundColor: '#fff',
+        },
+        image: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
+        resizeMode: 'cover',
         justifyContent: 'center',
-    },
-    image: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
-    },
-});
+        },
+    });
 
     Login.propTypes = {
         navigation: PropTypes.object,

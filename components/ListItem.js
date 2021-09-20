@@ -24,7 +24,7 @@ const ListItem = ({singleMedia, navigation}) => {
                 <RNEListItem.Subtitle>{singleMedia.description}</RNEListItem.Subtitle>
             </RNEListItem.Content>
             <RNEListItem.Chevron />
-    </RNEListItem>
+        </RNEListItem>
     );
 };
 

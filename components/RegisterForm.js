@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FormTextInput from './FormTextInput.js';
 import {Alert, View} from 'react-native';
-import {Button} from 'react-native-elements';
+import {Button, Input} from 'react-native-elements';
 import {useUser} from '../hooks/ApiHooks';
 import useSignUpForm from '../hooks/RegisterHooks';
-import {MainContext} from '../contexts/MainContext';
+//import FormTextInput from './FormTextInput.js';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RegisterForm = ({navigation}) => {
@@ -26,7 +25,7 @@ const RegisterForm = ({navigation}) => {
 
     return (
         <View>
-          <FormTextInput
+          <Input
             autoCapitalize="none"
             placeholder="username"
             onChangeText={(txt) => handleInputChange('username', txt)}
@@ -37,7 +36,7 @@ const RegisterForm = ({navigation}) => {
             }}
             errorMessage={errors.username}
           />
-          <FormTextInput
+          <Input
             autoCapitalize="none"
             placeholder="password"
             onChangeText={(txt) => handleInputChange('password', txt)}
@@ -47,7 +46,7 @@ const RegisterForm = ({navigation}) => {
           }}
           errorMessage={errors.password}
           />
-          <FormTextInput
+          <Input
             autoCapitalize="none"
             placeholder="confirm password"
             onChangeText={(txt) => handleInputChange('confirmPassword', txt)}
@@ -57,7 +56,7 @@ const RegisterForm = ({navigation}) => {
             }}
             errorMessage={errors.confirmPassword}
           />
-          <FormTextInput
+          <Input
             autoCapitalize="none"
             placeholder="email"
             onChangeText={(txt) => handleInputChange('email', txt)}
@@ -66,7 +65,7 @@ const RegisterForm = ({navigation}) => {
             }}
             errorMessage={errors.email}
           />
-          <FormTextInput
+          <Input
             autoCapitalize="none"
             placeholder="full name"
             onChangeText={(txt) => handleInputChange('full_name', txt)}
