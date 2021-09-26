@@ -18,6 +18,14 @@ const Upload = ({navigation}) => {
   const {addTag} = useTag();
   const {update, setUpdate} = useContext(MainContext);
 
+  const resetForm = () => {
+    setInputs({
+      title: '',
+      description: '',
+    });
+    setImage(require('../assets/icon.png'));
+  };
+
   const doUpload = async () => {
     const filename = image.uri.split('/').pop();
     // Infer the type of the image

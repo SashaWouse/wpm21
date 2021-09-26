@@ -18,6 +18,7 @@ import {useState} from 'react';
     return {
         handleInputChange,
         inputs,
+        setInputs,
     };
     };
 
